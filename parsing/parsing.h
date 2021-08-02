@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/30 04:47:28 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/02 17:00:56 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef	struct		s_all{
 t_env	*envp_to_list(char *env);
 void	line_to_changed(char *line, int *changed, t_all *a);
 char			**split_args(int *int_line, char *s, int c);
-int				px_gnl(char **line);
 int				px_strlen(char *s);
 char	*px_strjoin(char *s1, char *s2);
 int	ft_strncmp(char *dst, char *src, int size);

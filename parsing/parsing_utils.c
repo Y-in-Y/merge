@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:33:58 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/31 01:27:10 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/02 17:00:47 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,30 +253,4 @@ char	*px_strjoin(char *s1, char *s2)
 		buf[i++] = *s2++;
 	buf[i] = '\0';
 	return (buf);
-}
-
-int		px_gnl(char **line)
-{
-	int		size;
-	char	buf[2];
-	char	*store;
-	char	*temp;
-
-	size = 1;
-	store = px_strjoin("", "");
-	buf[size] = '\0';
-	while (size && buf[0] != '\n')
-	{
-		size = read(0, buf, 1);
-		if (size <= 0)
-			return (0);
-		if (buf[0] != '\n' && size != 0)
-		{
-			temp = px_strjoin(store, buf);
-			free(store);
-			store = temp;
-		}
-	}
-	*line = store;
-	return (size);
 }
