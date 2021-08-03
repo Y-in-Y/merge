@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   final_result_append_to_outfile.c                   :+:      :+:    :+:   */
+/*   append_out.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylee <ylee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 19:26:15 by ylee              #+#    #+#             */
-/*   Updated: 2021/06/14 23:15:08 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/04 00:29:16 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	final_result_append_to_outfile(char *file)
+void	append_out(char *file)
 {
 	int		fd;
 

@@ -36,11 +36,6 @@ void	heredoc(t_list *tmp)
 	close(p_fd[0]);
 }
 
-void	out_append(t_list *tmp)
-{
-	final_result_append_to_outfile(tmp->file); //need to rename
-}
-
 void	redir_connect(t_list *list)
 {
 	t_list	*tmp;
@@ -57,7 +52,7 @@ void	redir_connect(t_list *list)
 		else if (tmp->redir_flag == 3)
 			heredoc(tmp);
 		else if (tmp->redir_flag == 4)
-			out_append(tmp);
+			append_out(tmp->file);
 		else
 			error_msg("redir error");
 		tmp = tmp->next;
