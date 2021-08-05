@@ -9,6 +9,7 @@
 # define STDOUT_FD 1
 
 void	make_tmp_file(int	cnt);
+void	remove_tmp_file(int	cnt);
 
 void	multipipe(t_all *a);
 void	child_process(t_all *a, int i, int **fd);

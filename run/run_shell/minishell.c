@@ -96,7 +96,7 @@ void	minishell(void)
                     }
                 }
             }
-//			remove_tmp_file(a.pipe_cnt);
+			remove_tmp_file(a.pipe_cnt);
 			printf("end this line |%s|\n", line);
 			printf("this exit status : %d\n", g_env_list->exit_code);
             //		printf("builtin_cmd_check : %d\n", check);
