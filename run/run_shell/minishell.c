@@ -20,6 +20,7 @@ void	init_setting(int *row, int *col)
     signal(SIGINT, (void *)sig_handler_c);
     signal(SIGQUIT, SIG_IGN);
     tcgetattr(0, &term);
+    tcgetattr(0, &(g_env_list->backup));
     term.c_lflag &= ~ECHOCTL;
     tcsetattr(0, TCSANOW, &term);
     *row = 0;
@@ -42,6 +43,7 @@ void	minishell(void)
 {
     int		row;
     int		col;
+    int		check;
     char	*line;
     t_all	a;
 
@@ -66,14 +68,13 @@ void	minishell(void)
             }
             printf("\n");
   */          
-
-            int check;
-			check = check_blt_func(a.cmd);
-			if (check == 1 && a.pipe_cnt != 0)
-				check = 0;
-			if (check == 1)
+			make_tmp_file(a.pipe_cnt);
+			check = check_cmd(a.cmd);
+			if (check == -1)
+				printf("check cmd error\n");
+			else if (check == 1 && a.pipe_cnt == 0)
 				run_blt(&a);
-			else if (check == 0) // cmd is builtin cmd : return  1, is not : return 0
+			else if (check == 0 || a.pipe_cnt != 0) // cmd is builtin cmd : return  1, is not : return 0
             {
                 //printf("builtin_cmd_check : %d\n", check);
                 pid_t	pid;
@@ -95,6 +96,9 @@ void	minishell(void)
                     }
                 }
             }
+//			remove_tmp_file(a.pipe_cnt);
+			printf("end this line |%s|\n", line);
+			printf("this exit status : %d\n", g_env_list->exit_code);
             //		printf("builtin_cmd_check : %d\n", check);
             if (line && line[0])
                 add_history(line);
@@ -103,7 +107,7 @@ void	minishell(void)
             free_struct(&a);
             //		printf("\n\nnow new prompt\n\n");
         }
-        else
+        else //enter 나 ctrl+C 한 경우
             free(line);
         line = readline(PROMPT);
     }
