@@ -9,7 +9,8 @@ typedef struct		s_list	t_list;
 typedef	struct		s_all	t_all;
 
 int		check_blt_func(char *cmd);
-int		check_cmd(t_all *a, int cnt, int *new_fd);
+//int		check_cmd(t_all *a, int cnt, int *new_fd);
+int		check_cmd(char *cmd);
 void	reset_std_fd(int *new_fd);
 void	run_blt(t_all *a);
 //int		builtin_cmd_check(t_all *a);

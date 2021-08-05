@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/04 01:56:38 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/06 00:25:03 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "minishell.h"
 
 typedef struct s_env
 {
 	int				exit_code;
+	struct termios	backup;
 	char			*name;
 	char			*value;
 	char			**origin;

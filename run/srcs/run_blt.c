@@ -34,9 +34,8 @@ void	run_blt(t_all *a)
 	}
 	cnt = 0;
 //	printf("old cmd : %s, cnt : %d\n", a->cmd, cnt);
-	check_cmd_upper(a->cmd, &cnt);
 //	printf("new cmd : %s, cnt : %d\n", a->cmd, cnt);
-	is_blt = check_cmd(a, cnt, &new_std[0]);
+	is_blt = check_cmd(a->cmd);
 	if (a->pipe_cnt != 0 && is_blt <= 0)
 		exit(1);
 	else if (a->pipe_cnt != 0 && is_blt == 1)

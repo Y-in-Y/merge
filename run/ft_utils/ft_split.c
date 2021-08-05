@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 09:41:48 by ylee              #+#    #+#             */
-/*   Updated: 2021/06/11 15:35:18 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/06 01:29:02 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ static char	*put_word(char const **s, char c, int *str_len)
 	*str_len = 0;
 	while (*(*s + *str_len) && *(*s + *str_len) != c)
 		*str_len = *str_len + 1;
-	str = (char *)ft_calloc(*str_len + 1, sizeof(char));
+	str = (char *)malloc(sizeof(char) * (*str_len + 1));
 	if (!str)
 		return (0);
+	str[*str_len] = '\0';
 	ft_strlcpy(str, *s, *str_len + 1);
 	*s = *s + *str_len;
 	return (str);
@@ -69,9 +70,10 @@ char		**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	cnt = count_word(s, c);
-	result = (char **)ft_calloc(cnt + 1, sizeof(char *));
+	result = (char **)malloc(sizeof(char *) * (cnt + 1));
 	if (!result)
 		return (0);
+	result[cnt] = NULL;
 	cnt = 0;
 	while (*s)
 	{

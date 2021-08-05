@@ -1,5 +1,20 @@
 #include "minishell.h"
 
+void	replace_upper_cmd(char *cmd)
+{
+	int		i;
+
+	i = 0;
+	printf("before cmd : %s\n", cmd);
+	while (cmd[i])
+	{
+		if (cmd[i] >= 'A' && cmd[i] <= 'Z')
+			*(&cmd[i]) = cmd[i] + 32;
+		i++;
+	}
+	printf("after cmd : %s\n", cmd);
+}
+
 int	is_cmd_blt(char *cmd, int cnt)
 {
 	int	ret;
@@ -37,28 +52,17 @@ int	is_cmd_blt(char *cmd, int cnt)
 		ret = 1;
 	else
 		ret = 0;
+	if (ret == 0)
+		replace_upper_cmd(cmd);
 	return (ret);
-}
-
-void	replace_upper_cmd(char *cmd)
-{
-	int		i;
-
-	i = 0;
-	printf("before cmd : %s\n", cmd);
-	while (cmd[i])
-	{
-		if (cmd[i] >= 'A' && cmd[i] <= 'Z')
-			*(&cmd[i]) = cmd[i] + 32;
-		i++;
-	}
-	printf("after cmd : %s\n", cmd);
 }
 
 int	check_cmd(char *cmd)
 {
 	char	*for_check;
 	int		ret;
+	int		i;
+	int		cnt;
 
 	if (!cmd)
 		return (-1);
@@ -77,8 +81,6 @@ int	check_cmd(char *cmd)
 		i++;
 	}
 	ret = is_cmd_blt(for_check, cnt);
-	if (ret == 0)
-		replace_upper_cmd(cmd);
 	free(for_check);
 	return (ret);
 }
