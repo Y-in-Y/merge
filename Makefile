@@ -75,6 +75,7 @@ REDIR_F			=	append_out\
 					pipefd_to_stdout\
 					redir_connect\
 					run_here_document\
+					check_heredoc\
 
 REDIR_C			=	$(addsuffix .c, $(addprefix $(REDIR_D), $(REDIR_F)))
 REDIR_O			=	$(addsuffix .o, $(addprefix $(REDIR_D), $(REDIR_F)))

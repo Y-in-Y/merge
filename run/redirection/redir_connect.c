@@ -14,26 +14,11 @@ void	redir_out(t_list *tmp)
 
 void	heredoc(t_list *tmp)
 {
-	int		p_fd[2];
-	char	*line;
+	int		fd;
+	char	*tmpfile;
 
-	pipe(p_fd);
-	while (1)
-	{
-		line = readline("> ");
-		if (line)
-		{
-			printf("heredoc line : |%s|\n", line);
-			if (ft_strncmp(line, tmp->file, ft_strlen(line)) == 1)
-				break ;
-			write(p_fd[1], line, ft_strlen(line));
-			write(p_fd[1], "\n", 1);
-			free(line);
-		}
-	}
-	close(p_fd[1]);
-	dup2(p_fd[0], 0);
-	close(p_fd[0]);
+	tmpfile = ft_strjoin("/tmp/.", ft_itoa(tmp->pipe_idx));
+	filefd_to_stdin(tmpfile);
 }
 
 void	redir_connect(t_list *list)

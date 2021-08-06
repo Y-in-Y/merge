@@ -10,6 +10,7 @@
 
 void	make_tmp_file(int	cnt);
 void	remove_tmp_file(int	cnt);
+int		check_heredoc(t_all *a);
 
 void	multipipe(t_all *a);
 void	child_process(t_all *a, int i, int **fd);

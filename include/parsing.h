@@ -6,17 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/06 00:25:03 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/06 20:55:55 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
 # include "minishell.h"
 
 typedef struct s_env
@@ -31,6 +27,7 @@ typedef struct s_env
 
 typedef struct s_list// 아무것도 없으면 0 / < 1 / > 2 / << 3 / >> 4
 {
+	int				pipe_idx;
 	int				redir_flag;
 	char			*file;
 	struct s_list	*next;

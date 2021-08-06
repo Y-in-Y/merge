@@ -69,7 +69,10 @@ void	minishell(void)
             printf("\n");
   */          
 			make_tmp_file(a.pipe_cnt);
-			check = check_cmd(a.cmd);
+			if (check_heredoc(&a) == 0)
+				check = check_cmd(a.cmd);
+			else
+				check = -1;
 			if (check == -1)
 				printf("check cmd error\n");
 			else if (check == 1 && a.pipe_cnt == 0)
@@ -107,7 +110,7 @@ void	minishell(void)
             free_struct(&a);
             //		printf("\n\nnow new prompt\n\n");
         }
-        else //enter 나 ctrl+C 한 경우
+        else //line[0] = '\0' 인 경우 : enter 나 ctrl+C 한 경우
             free(line);
         line = readline(PROMPT);
     }
