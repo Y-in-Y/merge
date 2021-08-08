@@ -4,6 +4,8 @@
 # include "minishell.h"
 
 void	sig_handler_c(int signo);
+void	child_sig_handler_c(int signo);
+void	child_sig_handler_q3(int signo);
 void	minishell(void);
 void	error_msg(char *str);
 void	print_ascii_art(void);

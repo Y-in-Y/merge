@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/06 20:55:55 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/08 21:32:23 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_env
 {
 	int				exit_code;
 	struct termios	backup;
+	int				origin_stdin;
+	int				origin_stdout;
 	char			*name;
 	char			*value;
 	char			**origin;
