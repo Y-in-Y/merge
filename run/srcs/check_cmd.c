@@ -6,26 +6,11 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 14:26:56 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/09 14:27:06 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/09 19:33:50 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	replace_upper_cmd(char *cmd)
-{
-	int		i;
-
-	i = 0;
-//	printf("before cmd : %s\n", cmd);
-	while (cmd[i])
-	{
-		if (cmd[i] >= 'A' && cmd[i] <= 'Z')
-			*(&cmd[i]) = cmd[i] + 32;
-		i++;
-	}
-//	printf("after cmd : %s\n", cmd);
-}
 
 int	is_cmd_blt(char *cmd, int cnt)
 {
@@ -64,21 +49,23 @@ int	is_cmd_blt(char *cmd, int cnt)
 		ret = 1;
 	else
 		ret = 0;
-	if (ret == 0)
-		replace_upper_cmd(cmd);
+//	if (ret == 0)
+//		replace_upper_cmd(cmd);
 	return (ret);
 }
 
-int	check_cmd(char *cmd)
+int	check_cmd(t_all *a)
 {
 	char	*for_check;
 	int		ret;
 	int		i;
 	int		cnt;
 
-	if (!cmd)
+	if (!a || (a->pipe_cnt == 0 && !a->cmd))
 		return (-1);
-	for_check = ft_strdup(cmd);
+	if (!a->cmd && a->pipe_cnt != 0)
+		return (0);
+	for_check = ft_strdup(a->cmd);
 	if (!for_check)
 		return (-1);
 	i = 0;

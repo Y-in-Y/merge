@@ -98,7 +98,7 @@ void	minishell(void)
 			 */          
 			make_tmp_file(a.pipe_cnt);
 			if (check_heredoc(&a) == 0)
-				check = check_cmd(a.cmd);
+				check = check_cmd(&a);
 			else // heredoc 중에 ctrl + C 로 끝낸경우 
 				check = -1;
 			if (check == -1)

@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:17:07 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/09 19:56:17 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_env	*g_env_list;
+extern t_env	*g_env_list;
 
 void	line_to_changed(char *line, int *changed, t_all *a)
 {

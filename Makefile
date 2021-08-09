@@ -86,6 +86,7 @@ ELSE_F			=	check_blt_func\
 					check_delimiter\
 					error_msg\
 					run_blt\
+					run_blt_cmd\
 					run_cmd\
 					run_execve_cmd\
 

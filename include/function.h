@@ -10,7 +10,7 @@ void	minishell(void);
 void	error_msg(char *str);
 void	print_ascii_art(void);
 int	check_exit(char *line);
-int		check_cmd(char *cmd);
+int		check_cmd(t_all *a);
 char	*check_cmd_upper(char *cmd, int *cnt);
 void	move_cursor(int *row, int *col);
 void	run_execve_cmd(t_all *a);
