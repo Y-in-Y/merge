@@ -43,7 +43,7 @@ void	run_execve_cmd(t_all *a)
 		tmp = ft_strjoin(*dir, "/");
 		cmd = ft_strjoin(tmp, a->cmd);
 		free(tmp);
-		printf("join cmd : %s\n", cmd);
+//		printf("join cmd : %s\n", cmd);
 //		int i;
 //		i = 0;
 //		while (a->arg[i])

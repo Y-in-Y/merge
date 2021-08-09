@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 00:06:54 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/04 00:07:04 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/09 16:07:05 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int argc, char **argv, char **envp)
 		error_msg("no need arg!");
 	print_ascii_art();
 	g_env_list = init_envp(envp);
+	struct termios term;
+	tcgetattr(0, &term);
 	env_list_to_arr();
 	pid = fork();
 	if (pid < 0)
@@ -66,6 +68,7 @@ int	main(int argc, char **argv, char **envp)
 //		printf("minishell process : %d\n", getpid());
 		minishell();
 	}
+	tcsetattr(0, TCSANOW, &term);
 //	system("leaks minishell");
 	return (0);
 }

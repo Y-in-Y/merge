@@ -13,11 +13,12 @@ void	sig_handler_c(int signo)
 	}
 }
 
+/*
 void	child_sig_handler_c(int signo)
 {
 	if (signo == SIGINT)
 	{
-		printf("\^C\n");
+		printf("\^Cccc\n");
 //		rl_on_new_line();
 //		rl_replace_line("", 0);
 //		rl_redisplay();
@@ -29,13 +30,14 @@ void	child_sig_handler_q3(int signo)
 {
 	if (signo == SIGQUIT)
 	{
-		printf("\^\\Quit: 3\n");
+		printf("\^\\qqQuit: 3\n");
 //		rl_on_new_line();
 //		rl_replace_line("", 0);
 //		rl_redisplay();
 		exit(131);
 	}
 }
+*/
 
 void	init_setting(int *row, int *col)
 {
@@ -100,7 +102,8 @@ void	minishell(void)
 			else // heredoc 중에 ctrl + C 로 끝낸경우 
 				check = -1;
 			if (check == -1)
-				printf("check cmd error\n");
+				;
+//				printf("check cmd error\n");
 			else if (check == 1 && a.pipe_cnt == 0)
 				run_blt(&a);
 			else if (check == 0 || a.pipe_cnt != 0) // cmd is builtin cmd : return  1, is not : return 0
@@ -118,7 +121,13 @@ void	minishell(void)
 						g_env_list->exit_code = WEXITSTATUS(state);
 					else if (WIFSIGNALED(state))
 						g_env_list->exit_code = WTERMSIG(state);
-					printf("\n*** exit state : %d g_code : %d\n\n", state, g_env_list->exit_code);
+//					printf("\n*** exit state : %d g_code : %d\n\n", state, g_env_list->exit_code);
+					if (state == 2)
+						printf("^C\n");
+					else if (state == 3 && a.pipe_cnt == 0)
+						printf("^\\Quit: 3\n");
+					else if (state == 3 && a.pipe_cnt != 0)
+						printf("^\\");
 					signal(SIGINT, (void *)sig_handler_c);
 					signal(SIGQUIT, SIG_IGN);
 /*
@@ -131,10 +140,10 @@ void	minishell(void)
 				}
 				else if (pid == 0)
 				{
-					signal(SIGINT, (void *)child_sig_handler_c);
-					signal(SIGQUIT, (void *)child_sig_handler_q3);
-//					signal(SIGINT, SIG_DFL);
-//					signal(SIGQUIT, SIG_DFL);
+//					signal(SIGINT, (void *)child_sig_handler_c);
+//					signal(SIGQUIT, (void *)child_sig_handler_q3);
+					signal(SIGINT, SIG_DFL);
+					signal(SIGQUIT, SIG_DFL);
 /*
 					struct termios term;
 					tcgetattr(0, &term);
@@ -151,8 +160,8 @@ void	minishell(void)
 				}
 			}
 			remove_tmp_file(a.pipe_cnt);
-			printf("end this line |%s|\n", line);
-			printf("this exit status : %d\n", g_env_list->exit_code);
+//			printf("end this line |%s|\n", line);
+//			printf("this exit status : %d\n", g_env_list->exit_code);
 			//		printf("builtin_cmd_check : %d\n", check);
 			if (line && line[0])
 				add_history(line);

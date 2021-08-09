@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_cmd.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/09 14:26:56 by ylee              #+#    #+#             */
+/*   Updated: 2021/08/09 14:27:06 by ylee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	replace_upper_cmd(char *cmd)
@@ -5,14 +17,14 @@ void	replace_upper_cmd(char *cmd)
 	int		i;
 
 	i = 0;
-	printf("before cmd : %s\n", cmd);
+//	printf("before cmd : %s\n", cmd);
 	while (cmd[i])
 	{
 		if (cmd[i] >= 'A' && cmd[i] <= 'Z')
 			*(&cmd[i]) = cmd[i] + 32;
 		i++;
 	}
-	printf("after cmd : %s\n", cmd);
+//	printf("after cmd : %s\n", cmd);
 }
 
 int	is_cmd_blt(char *cmd, int cnt)

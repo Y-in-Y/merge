@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 22:02:57 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/06 00:21:48 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/09 14:23:48 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	remove_tmp_file(int cnt)
 		execve("/bin/rm", rm, NULL);
 		printf("rm execve do not run");
 	}
-	check_tmp_file();
+//	check_tmp_file();
 }
 
 void	make_tmp_file(int	cnt)
@@ -81,7 +81,7 @@ void	make_tmp_file(int	cnt)
 			close(fd);
 			i++;
 		}
-		check_tmp_file();
+//		check_tmp_file();
 		exit(0);
 	}
 }
