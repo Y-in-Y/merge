@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 19:56:17 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/10 00:39:59 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_env	*g_env_list;
 
-void	line_to_changed(char *line, int *changed, t_all *a)
+void	line_to_changed(char *line, int *changed)
 {
 	int		i;
 
@@ -33,7 +33,7 @@ void	line_to_changed(char *line, int *changed, t_all *a)
 		else if (line[i] == '$')
 			i = env_name(line, changed, i);
 		else if (line[i] == '<' || line[i] == '>')
-			i = redir_name(line, changed, i, a);
+			i = redir_name(line, changed, i);
 		else if (line[i] == '|')
 			changed[i] = 8;
 		else
@@ -57,20 +57,20 @@ void	parsing(char *line, t_all *a)
 	while (i < length)
 		changed[i++] = 1111111;
 	struct_init(a);
-	line_to_changed(line, changed, a);
+	line_to_changed(line, changed);
 	i = 0;
 	while (line[i])
 	{
 		if (changed[i] == 1111111)
 		{
-//			printf("line to change error\n");
+			printf("line to change error\n");
 			return ;
 		}
 		i++;
 	}
 	new_line = cutting_int_line(line, &changed, a);
-	changed_line_cut(new_line, changed, a);
+	changed_line_cut(changed, a);
 	check_arguments(a);
-//	printf("in parging_after check arguments\n");
+	printf("in parging_after check arguments\n");
 	is_cmd_echo(a);
 }

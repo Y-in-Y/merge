@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 18:31:50 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/09 17:24:25 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/10 00:40:54 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	tmp_in_heredoc(int i, t_list *r_list)
 		exec_heredoc(i, r_list);
 		exit(1);
 	}
+	return (1);
 }
 
 int		check_heredoc(t_all *a)

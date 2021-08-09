@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:05:59 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:17:51 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 00:35:32 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static size_t	ft_cnt(int *s, int c, int strlen)
+size_t	ft_cnt(int *s, int c, int strlen)
 {
 	size_t	cnt;
 	int		*tmp;
@@ -35,7 +35,7 @@ static size_t	ft_cnt(int *s, int c, int strlen)
 	return (cnt);
 }
 
-static int	ft_n_malloc(char **all, size_t k, size_t cnt)
+int	ft_n_malloc(char **all, size_t k, size_t cnt)
 {
 	all[k] = malloc(sizeof(char) * (cnt + 1));
 	if (!(all[k]))
@@ -51,7 +51,7 @@ static int	ft_n_malloc(char **all, size_t k, size_t cnt)
 	return (0);
 }
 
-static size_t	ft_index(size_t i, int *s, int c, int strlen)
+size_t	ft_index(size_t i, int *s, int c, int strlen)
 {
 	size_t	cnt;
 
@@ -64,7 +64,7 @@ static size_t	ft_index(size_t i, int *s, int c, int strlen)
 	return (cnt);
 }
 
-static int	ft_fill(int *int_line, char const *s, int c, char **all)
+int	ft_fill(int *int_line, char const *s, int c, char **all)
 {
 	size_t	i;
 	size_t	j;
@@ -78,7 +78,7 @@ static int	ft_fill(int *int_line, char const *s, int c, char **all)
 	{
 		while ((int)i < px_strlen((char *)s) && int_line[i] == c)
 			i++;
-		if (i >= px_strlen((char *)s))
+		if (i >= (size_t)px_strlen((char *)s))
 			break ;
 		cnt = ft_index(i, int_line, c, px_strlen((char *)s));
 		i += cnt;
