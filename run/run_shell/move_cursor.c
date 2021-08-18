@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int		ft_atoi(char *str)
+int		cs_atoi(char *str)
 {
 	int		i;
 	int		num;
@@ -62,14 +62,14 @@ void	move_cursor(int *row, int *col)
 	{
 		if (row_f == 0 && buf[i] >= '0' && buf[i] <= '9')
 		{
-			*row = ft_atoi(&buf[i]) - 1;
+			*row = cs_atoi(&buf[i]) - 1;
 			while (buf[i] >= '0' && buf[i] <= '9')
 				i++;
 			row_f = 1;
 		}
 		else if (row_f == 1 && buf[i] >= '0' && buf[i] <= '9')
 		{
-			*col = ft_atoi(&buf[i]) - 1;
+			*col = cs_atoi(&buf[i]) - 1;
 			break ;
 		}
 		else if (buf[i] < 0 || buf[i] > '9')

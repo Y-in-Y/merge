@@ -50,6 +50,7 @@ FT_F			=	ft_split\
 					ft_strjoin\
 					ft_strlcpy\
 					ft_strlen\
+					ft_atoi\
 
 FT_C			=	$(addsuffix .c, $(addprefix $(FT_D), $(FT_F)))
 FT_O			=	$(addsuffix .o, $(addprefix $(FT_D), $(FT_F)))

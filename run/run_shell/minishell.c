@@ -26,18 +26,19 @@ void	child_sig_handler_c(int signo)
 	}
 }
 
+*/
+
 void	child_sig_handler_q3(int signo)
 {
 	if (signo == SIGQUIT)
 	{
-		printf("\^\\qqQuit: 3\n");
+//		printf("\^\\qqQuit: 3\n");
 //		rl_on_new_line();
 //		rl_replace_line("", 0);
 //		rl_redisplay();
-		exit(131);
+//		exit(131);
 	}
 }
-*/
 
 void	init_setting(int *row, int *col)
 {
@@ -46,6 +47,7 @@ void	init_setting(int *row, int *col)
 	g_env_list->origin_stdin = dup(0);
 	g_env_list->origin_stdout = dup(1);
 	signal(SIGINT, (void *)sig_handler_c);
+//	signal(SIGQUIT, (void *)child_sig_handler_q3);
 	signal(SIGQUIT, SIG_IGN);
 	tcgetattr(0, &term);
 	tcgetattr(0, &(g_env_list->backup));

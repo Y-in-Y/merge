@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 22:37:53 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/06 01:32:12 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/18 13:07:06 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	rearrange_arg(t_all *a)
 	{
 		if (a->arg[i][0] != '\0')
 		{
-			printf("a->arg[%d][0] : %c = %d\n", i, a->arg[i][0], a->arg[i][0]);
+//			printf("a->arg[%d][0] : %c = %d\n", i, a->arg[i][0], a->arg[i][0]);
 			new[cnt] = ft_strdup(a->arg[i]);
 			cnt++;
 		}
@@ -53,6 +53,7 @@ void	rearrange_arg(t_all *a)
 	free(a->arg[i]);
 	free(a->arg);
 	a->arg = new;
+/*	
 	//이 밑으로 자르기
 	i = 0;
 	while (a->arg && a->arg[i])
@@ -60,4 +61,5 @@ void	rearrange_arg(t_all *a)
 		printf("new a->arg[%d] : %s\n", i, a->arg[i]);
 		i++;
 	}
+*/
 }

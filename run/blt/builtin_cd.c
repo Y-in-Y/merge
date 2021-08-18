@@ -28,7 +28,11 @@ void	builtin_cd(t_all *a)
 	}
 	else
 	{
-		chdir(a->arg[1]);
+		if (chdir(a->arg[1]) == -1)
+		{
+			printf("%s is not a directory\n", a->arg[1]);
+			return ;
+		}
 		pwd = getcwd(NULL, 0);
 		run_export("PWD", pwd);
 	}

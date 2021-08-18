@@ -17,6 +17,7 @@ void	run_execve_cmd(t_all *a);
 void	redir_connect(t_list *list);
 void    rearrange_arg(t_all *a);
 
+int	ft_atoi(char *str);
 int	ft_strlen(char *str);
 char	*ft_strjoin(char *str1, char *str2);
 char		**ft_split(char const *s, char c);

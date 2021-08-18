@@ -55,5 +55,6 @@ void	run_execve_cmd(t_all *a)
 		free(cmd);
 		dir++;
 	}
+	execve(a->cmd, a->arg, g_env_list->origin);
 	error_msg("cmd not found");
 }

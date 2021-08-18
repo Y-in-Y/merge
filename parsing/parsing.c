@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/10 00:39:59 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/18 13:07:50 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	parsing(char *line, t_all *a)
 	new_line = cutting_int_line(line, &changed, a);
 	changed_line_cut(changed, a);
 	check_arguments(a);
-	printf("in parging_after check arguments\n");
+//	printf("in parging_after check arguments\n");
 	is_cmd_echo(a);
 }

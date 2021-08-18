@@ -22,7 +22,7 @@ void	reset_std_fd(int *new_fd)
 void	reset_std_fd(void)
 {
 	dup2(g_env_list->origin_stdin, 0);
-	dup2(g_env_list->origin_stdout, 0);
+	dup2(g_env_list->origin_stdout, 1);
 }
 char	*replace_upper_cmd(char *cmd)
 {

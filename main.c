@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 00:06:54 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/09 16:07:05 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/18 16:34:42 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	main(int argc, char **argv, char **envp)
 	{
 //		printf("main process : %d\n", getpid());
 		waitpid(pid, &state, 0);
-		if (state != 0)
-			printf("minishell error %d\n", state);
+		if (WIFEXITED(state))
+			exit(WEXITSTATUS(state));
+//		if (state != 0)
+//			printf("minishell error %d\n", state);
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 //		printf("minishell is over\n");
@@ -70,5 +72,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	tcsetattr(0, TCSANOW, &term);
 //	system("leaks minishell");
+	if (WIFEXITED(state))
+		exit(WEXITSTATUS(state));
 	return (0);
 }
