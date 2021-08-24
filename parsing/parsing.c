@@ -14,11 +14,8 @@
 
 t_env	*g_env_list;
 
-int	line_to_changed(char *line, int *changed)
+int	line_to_changed(char *line, int *changed, int i)
 {
-	int		i;
-
-	i = -1;
 	while (line[++i])
 	{
 		if ((line[i] >= 'a' && line[i] <= 'z') || \
@@ -57,7 +54,7 @@ void	parsing(char *line, t_all *a)
 	while (i < length)
 		changed[i++] = 1111111;
 	struct_init(a);
-	i = line_to_changed(line, changed);
+	i = line_to_changed(line, changed, -1);
 	if (i < 0)
 		return ;
 	i = 0;

@@ -15,7 +15,8 @@
 void	remove_tmp_file(int cnt)
 {
 	pid_t	pid;
-	int	status;
+	int		status;
+	int		i;
 	char	**rm;
 
 	pid = fork();
@@ -25,7 +26,7 @@ void	remove_tmp_file(int cnt)
 	{
 		rm = malloc(sizeof(char *) * (cnt + 3));
 		rm[0] = "rm";
-		int i = 0;
+		i = 0;
 		while (i <= cnt)
 		{
 			rm[i + 1] = ft_strjoin("/tmp/.", ft_itoa(i));
@@ -40,11 +41,9 @@ void	remove_tmp_file(int cnt)
 void	make_tmp_file(int	cnt)
 {
 	pid_t	pid;
-	int	i;
-	int	status;
-	int	fd;
-	char	*tmp;
-	char	**ls;
+	int		i;
+	int		status;
+	int		fd;
 
 	i = 0;
 	pid = fork();
@@ -54,8 +53,8 @@ void	make_tmp_file(int	cnt)
 	{
 		while (i <= cnt)
 		{
-			tmp = ft_strjoin("/tmp/.", ft_itoa(i));
-			fd = open(tmp, O_RDWR | O_CREAT | O_TRUNC ,0666);
+			fd = open(ft_strjoin("/tmp/.", ft_itoa(i)), \
+					O_RDWR | O_CREAT | O_TRUNC, 0666);
 			close(fd);
 			i++;
 		}

@@ -56,7 +56,7 @@ typedef struct s_all
 t_env			*envp_to_list(char *env);
 //parsing.c
 void			parsing(char *line, t_all *a);
-int				line_to_changed(char *line, int *changed);
+int				line_to_changed(char *line, int *changed, int i);
 //parsing_env.c
 int				env_name(char *line, int *changed, int i);
 //parsing_quote.c

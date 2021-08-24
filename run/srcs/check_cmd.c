@@ -24,26 +24,26 @@ int	is_cmd_blt(char *cmd, int cnt)
 	else if (ft_strncmp(cmd, "pwd", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "export", 7) == 1)
-    {
-        if (cnt == 0)
+	{
+		if (cnt == 0)
 			ret = 1;
-        else
-        {
-            printf("command not found\n");
-            ret = -1;
-        }
-    }
-	else if (ft_strncmp(cmd, "unset", 6) == 1)
-    {
-        if (cnt == 0)
-			ret = 1;
-        else
-        {
-            printf("command not found\n");
-            ret = -1;
-        }
+		else
+		{
+			printf("command not found\n");
+			ret = -1;
+		}
 	}
-    else if (ft_strncmp(cmd, "env", 4) == 1)
+	else if (ft_strncmp(cmd, "unset", 6) == 1)
+	{
+		if (cnt == 0)
+			ret = 1;
+		else
+		{
+			printf("command not found\n");
+			ret = -1;
+		}
+	}
+	else if (ft_strncmp(cmd, "env", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "exit", 5) == 1)
 		ret = 1;

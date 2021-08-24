@@ -13,9 +13,9 @@ void	run_export(char	*name, char *value)
 	{
 		check = ft_strncmp(tmp->name, name, ft_strlen(name));
 		if (check == 1)
-			break;
+			break ;
 		if (!tmp->next)
-			break;
+			break ;
 		tmp = tmp->next;
 	}
 	if (check == 1)
@@ -73,7 +73,7 @@ void	builtin_export(t_all *a)
 				check[i] = '\0';
 				name = ft_strdup(check);
 				value = ft_strdup(&check[i + 1]);
-				break;
+				break ;
 			}
 			i++;
 		}

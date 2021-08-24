@@ -19,7 +19,7 @@ void	pipefd_to_stdout(int *fd);
 void	filefd_to_stdin(char *file);
 void	filefd_to_stdout(char *file);
 void	run_here_document(char *file);
-int	check_delimiter(char *argv, char *str);
+int		check_delimiter(char *argv, char *str);
 void	append_out(char *file);
 void	run_cmd(t_all *thispage);
 

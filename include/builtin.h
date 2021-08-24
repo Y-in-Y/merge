@@ -4,9 +4,9 @@
 # include "minishell.h"
 # include "parsing.h"
 
-typedef struct		s_env	t_env;
-typedef struct		s_list	t_list;
-typedef	struct		s_all	t_all;
+typedef struct s_env	t_env;
+typedef struct s_list	t_list;
+typedef struct s_all	t_all;
 
 int		check_blt_func(char *cmd);
 //int		check_cmd(t_all *a, int cnt, int *new_fd);

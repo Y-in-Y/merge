@@ -36,8 +36,7 @@ PARSING_C		=	$(addsuffix .c, $(addprefix $(PARSING_D), $(PARSING_F)))
 PARSING_O		=	$(addsuffix .o, $(addprefix $(PARSING_D), $(PARSING_F)))
 
 RUN_D			=	./run/run_shell/
-RUN_F			=	print_ascii_art\
-					child_process\
+RUN_F			=	child_process\
 					manage_tmp_file\
 					move_cursor\
 					minishell\

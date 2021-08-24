@@ -61,7 +61,7 @@ static char	**free_all(char **result, int cnt)
 	return (result);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	int		cnt;
@@ -81,11 +81,10 @@ char		**ft_split(char const *s, char c)
 			s++;
 		if (*s && *s != c)
 		{
-			if (!(result[cnt++] = put_word(&s, c, &str_len)))
-			{
-				free_all(result, --cnt);
-				return (0);
-			}
+			result[cnt] = put_word(&s, c, &str_len);
+			if (!result[cnt])
+				return (free_all(result, cnt));
+			cnt++;
 		}
 	}
 	return (result);

@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		check_non_numeric(char *str)
+int	check_non_numeric(char *str)
 {
 	int		i;
 
@@ -27,7 +27,7 @@ int		check_non_numeric(char *str)
 	return (0);
 }
 
-int		ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int		i;
 	int		num;

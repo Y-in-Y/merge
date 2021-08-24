@@ -12,13 +12,13 @@
 
 #include "minishell.h"
 
-extern t_env    *g_env_list;
+extern t_env	*g_env_list;
 
-char    **path_dir(void)
+char	**path_dir(void)
 {
-	char    *path;
-	char    **dir;
-	int     i;
+	char	*path;
+	char	**dir;
+	int		i;
 
 	path = find_env_value("PATH");
 	if (!path)
@@ -31,15 +31,15 @@ char    **path_dir(void)
 
 void	run_execve_cmd(t_all *a)
 {
-	char    **dir;
-	char    *tmp;
-	char    *cmd;
+	char	**dir;
+	char	*tmp;
+	char	*cmd;
 
 	dir = path_dir();
 	if (a->redir_list && a->redir_list->redir_flag != 0)
 	{
 		redir_connect(a->redir_list);
-        rearrange_arg(a);
+		rearrange_arg(a);
 	}
 	while (dir && *dir)
 	{

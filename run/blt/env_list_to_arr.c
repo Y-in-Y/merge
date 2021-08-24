@@ -14,7 +14,7 @@
 
 extern t_env	*g_env_list;
 
-int		ft_strcpy(char *origin, char *txt)
+int	ft_strcpy(char *origin, char *txt)
 {
 	int		i;
 

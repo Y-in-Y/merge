@@ -5,7 +5,7 @@ extern t_env	*g_env_list;
 void	builtin_unset(t_all *a)
 {
 	char	*name;
-	int	check;
+	int		check;
 	t_env	*tmp;
 	t_env	*unset;
 

@@ -12,16 +12,18 @@
 
 #include "minishell.h"
 
-extern t_env *g_env_list;
+extern t_env	*g_env_list;
 
 void	exec_heredoc(int i, t_list *r_list)
 {
 	int		fd;
+	char	*openfile;
 	char	*line;
 	char	*delimiter;
 
 	delimiter = ft_strjoin(r_list->file, "\n");
-	fd = open(ft_strjoin("/tmp/.", ft_itoa(i)), O_RDWR | O_CREAT | O_TRUNC , 0666);
+	openfile = ft_strjoin("/tmp/.", ft_itoa(i));
+	fd = open(openfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (fd < 0)
 	{
 		printf("run_heredoc open error\n");
@@ -49,8 +51,8 @@ void	exec_heredoc(int i, t_list *r_list)
 
 int	tmp_in_heredoc(int i, t_list *r_list)
 {
-	pid_t	pid;
-	int		status;
+	pid_t			pid;
+	int				status;
 	struct termios	term;
 
 	pid = fork();
@@ -77,7 +79,7 @@ int	tmp_in_heredoc(int i, t_list *r_list)
 	return (1);
 }
 
-int		check_heredoc(t_all *a)
+int	check_heredoc(t_all *a)
 {
 	int		i;
 	t_all	*tmp;
@@ -93,9 +95,7 @@ int		check_heredoc(t_all *a)
 		{
 			if (r_list->redir_flag == 3)
 			{
-				int	check;
-				check = tmp_in_heredoc(i, r_list);
-				if (check == 2) //ctrl + C 로 끝난 경우
+				if (tmp_in_heredoc(i, r_list) == 2) //ctrl + C 로 끝난 경우
 				{
 					printf("\n");
 					return (1);

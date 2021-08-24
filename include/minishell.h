@@ -20,8 +20,8 @@
 
 # define PROMPT "nyanshell > "
 
-typedef struct		s_env	t_env;
-typedef struct		s_list	t_list;
-typedef	struct		s_all	t_all;
+typedef struct s_env	t_env;
+typedef struct s_list	t_list;
+typedef struct s_all	t_all;
 
 #endif

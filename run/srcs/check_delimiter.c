@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		check_delimiter(char *argv, char *str)
+int	check_delimiter(char *argv, char *str)
 {
 	int	i;
 

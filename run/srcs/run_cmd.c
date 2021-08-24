@@ -20,5 +20,5 @@ void	run_cmd(t_all *thispage)
 
 	is_builtin = check_cmd(thispage->cmd);
 	if (is_builtin == 0)
-        run_execve_cmd(thispage);
+		run_execve_cmd(thispage);
 }

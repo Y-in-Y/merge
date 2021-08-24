@@ -19,10 +19,11 @@ void	reset_std_fd(void)
 	dup2(g_env_list->origin_stdin, 0);
 	dup2(g_env_list->origin_stdout, 1);
 }
+
 char	*replace_upper_cmd(char *cmd)
 {
 	char	*new;
-	int	i;
+	int		i;
 
 	if (!cmd)
 		return (NULL);
@@ -39,13 +40,13 @@ char	*replace_upper_cmd(char *cmd)
 
 void	run_blt(t_all *a)
 {
-	int	cnt;
+	int		cnt;
 	char	*new_cmd;
 
 	if (a->redir_list && a->redir_list->redir_flag != 0)
 	{
 		redir_connect(a->redir_list);
-        rearrange_arg(a);
+		rearrange_arg(a);
 	}
 	cnt = 0;
 	new_cmd = replace_upper_cmd(a->cmd);

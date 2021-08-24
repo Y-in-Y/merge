@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		check_line(char **line, char *buf, char *file, int *fd)
+int	check_line(char **line, char *buf, char *file, int *fd)
 {
 	char	*tmp;
 	char	*file_for_check;

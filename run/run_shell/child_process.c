@@ -29,7 +29,7 @@ void	child_process(t_all *a, int i, int **fd)
 	thispage->pipe_cnt = 1;
 	tmp = thispage->redir_list;
 	if (tmp && tmp->redir_flag != 0)
-        rearrange_arg(thispage);
+		rearrange_arg(thispage);
 	only_pipe(a, i, fd);
 	check = check_blt_func(thispage->cmd);
 	if (check == 1)
