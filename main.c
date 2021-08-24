@@ -38,14 +38,14 @@ t_env	*init_envp(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int			state;
-	pid_t		pid;
+	int				state;
+	pid_t			pid;
+	struct termios	term;
 
 	if (argc != 1 || !argv || !envp)
 		error_msg("no need arg!");
 	print_nyan();
 	g_env_list = init_envp(envp);
-	struct termios term;
 	tcgetattr(0, &term);
 	env_list_to_arr();
 	pid = fork();
