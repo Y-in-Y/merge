@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:14:44 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:31:34 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/23 22:51:25 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_list	*make_next_flag_list(void)
 void	struct_init(t_all *a)
 {
 	a->redir_list = (t_list *)malloc(sizeof(t_list));
+	a->int_line_cut = NULL;
 	a->pipe_cnt = 0;
 	a->next = NULL;
 	a->redir_list->next = NULL;

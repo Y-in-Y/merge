@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 14:26:56 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/09 19:33:50 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/24 18:14:48 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	is_cmd_blt(char *cmd, int cnt)
 		ret = 1;
 	else
 		ret = 0;
-//	if (ret == 0)
-//		replace_upper_cmd(cmd);
 	return (ret);
 }
 

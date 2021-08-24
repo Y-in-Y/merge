@@ -62,10 +62,8 @@ void	multipipe(t_all *a)
 				while (i < cmd_cnt)
 				{
 					waitpid(pid[i], &state, 0);
-//					printf("multipipe pid %d is exit by %d\n", pid[i], state);
 					i++;
 				}
-//				printf("multipipe pid %d is exit by %d\n", pid[i - 1], state);
 			}
 		}
 	}

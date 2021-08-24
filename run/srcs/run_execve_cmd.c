@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_execve_cmd.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/24 18:17:46 by ylee              #+#    #+#             */
+/*   Updated: 2021/08/24 18:17:48 by ylee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 extern t_env    *g_env_list;
@@ -11,17 +23,9 @@ char    **path_dir(void)
 	path = find_env_value("PATH");
 	if (!path)
 		error_msg("cannot find PATH env");
-//	printf("path : %s\n", path);
 	dir = ft_split(path, ':');
 	if (!dir)
 		error_msg("cannot split path");
-	i = 0;
-//	printf(">>path split result<<\n");
-	while (dir[i])
-	{
-//		printf("%d) %s\n", i, dir[i]);
-		i++;
-	}
 	return (dir);
 }
 
@@ -39,18 +43,9 @@ void	run_execve_cmd(t_all *a)
 	}
 	while (dir && *dir)
 	{
-//		printf("dir : %s  ", *dir);
 		tmp = ft_strjoin(*dir, "/");
 		cmd = ft_strjoin(tmp, a->cmd);
 		free(tmp);
-//		printf("join cmd : %s\n", cmd);
-//		int i;
-//		i = 0;
-//		while (a->arg[i])
-//		{
-//			printf("arg[%d] : %s\n", i, a->arg[i]);
-//			i++;
-//		}
 		execve(cmd, a->arg, g_env_list->origin);
 		free(cmd);
 		dir++;

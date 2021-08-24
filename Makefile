@@ -17,6 +17,7 @@ TOTAL_O			=	$(addsuffix .o, $(addprefix $(OBJ_D), $(PARSING_F)))\
 PARSING_D		=	./parsing/
 PARSING_F		=	check_args\
 					check_cmd_echo\
+					check_cmd_echo_2\
 					cutting_line\
 					env_to_str\
 					envp_to_list\
@@ -41,6 +42,8 @@ RUN_F			=	print_ascii_art\
 					move_cursor\
 					minishell\
 					multipipe\
+					print_nyan\
+					print_nyan_2\
 
 RUN_C			=	$(addsuffix .c, $(addprefix $(RUN_D), $(RUN_F)))
 RUN_O			=	$(addsuffix .o, $(addprefix $(RUN_D), $(RUN_F)))

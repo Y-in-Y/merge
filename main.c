@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 00:06:54 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/18 16:34:42 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/24 15:39:32 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 1 || !argv || !envp)
 		error_msg("no need arg!");
-	print_ascii_art();
+	print_nyan();
 	g_env_list = init_envp(envp);
 	struct termios term;
 	tcgetattr(0, &term);
@@ -55,23 +55,15 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGQUIT, SIG_IGN);
 	if (pid > 0)
 	{
-//		printf("main process : %d\n", getpid());
 		waitpid(pid, &state, 0);
 		if (WIFEXITED(state))
 			exit(WEXITSTATUS(state));
-//		if (state != 0)
-//			printf("minishell error %d\n", state);
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-//		printf("minishell is over\n");
 	}
 	else if (pid == 0)
-	{
-//		printf("minishell process : %d\n", getpid());
 		minishell();
-	}
 	tcsetattr(0, TCSANOW, &term);
-//	system("leaks minishell");
 	if (WIFEXITED(state))
 		exit(WEXITSTATUS(state));
 	return (0);

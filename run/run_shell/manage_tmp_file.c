@@ -6,32 +6,11 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 22:02:57 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/09 14:23:48 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/24 18:12:37 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	check_tmp_file(void)
-{
-	pid_t	pid;
-	int		status;
-	char	**ls;
-
-	pid = fork();
-	if(pid > 0)
-		wait(&status);
-	else if(pid == 0)
-	{
-		ls = malloc(sizeof(char *) * 5);
-		ls[0] = "ls";
-		ls[1] = "-al";
-		ls[2] = "/tmp/";
-		ls[3] = NULL;
-		execve("/bin/ls", ls, NULL);
-		printf("execve do not run\n");
-	}
-}
 
 void	remove_tmp_file(int cnt)
 {
@@ -56,7 +35,6 @@ void	remove_tmp_file(int cnt)
 		execve("/bin/rm", rm, NULL);
 		printf("rm execve do not run");
 	}
-//	check_tmp_file();
 }
 
 void	make_tmp_file(int	cnt)
@@ -81,7 +59,6 @@ void	make_tmp_file(int	cnt)
 			close(fd);
 			i++;
 		}
-//		check_tmp_file();
 		exit(0);
 	}
 }

@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_env.c                                      :+:      :+:    :+:   */
+/*   check_cmd_echo_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/03 01:04:46 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/10 00:56:52 by inyang           ###   ########.fr       */
+/*   Created: 2021/08/19 01:08:08 by inyang            #+#    #+#             */
+/*   Updated: 2021/08/19 01:09:44 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	env_name(char *line, int *changed, int i)
+void	is_there_n_option(t_all *b, int i)
 {
-	changed[i] = 5;
-	while (line[i++])
-	{
-		if ((line[i] >= 'A' && line[i] <= 'Z') || \
-		(line[i] >= 'a' && line[i] <= 'z') || \
-		(line[i] >= '0' && line[i] <= '9') || \
-		(line[i] == '_'))
-			changed[i] = 5;
-		else
-			break ;
-	}
-	return (i - 1);
+	if (b->arg[i + 1] && px_strcmp(b->arg[i + 1], "-n"))
+		b->echo_n_cnt = 1;
 }

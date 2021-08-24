@@ -6,13 +6,18 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/15 16:33:55 by ylee             ###   ########.fr       */
+/*   Updated: 2021/08/23 22:10:09 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <term.h>
 # include "minishell.h"
 
 typedef struct s_env
@@ -51,7 +56,7 @@ typedef struct s_all
 t_env			*envp_to_list(char *env);
 //parsing.c
 void			parsing(char *line, t_all *a);
-void			line_to_changed(char *line, int *changed);
+int				line_to_changed(char *line, int *changed);
 //parsing_env.c
 int				env_name(char *line, int *changed, int i);
 //parsing_quote.c
@@ -75,9 +80,11 @@ size_t			ft_index(size_t i, int *s, int c, int strlen);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
 void			find_dollar_question(char *new_line, int **changed);
-int				*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp);
+int				*return_final_line(int *i, char *env_value, \
+				char **tmp_str, int *tmp);
 char			*insert_env_value(int *i, char *new_line, char *env_value);
-int				*change_env_name_to_value(int *i, char *new_line, int env_len, int *tmp);
+int				*change_env_name_to_value(int *i, char *new_line, \
+				int env_len, int *tmp);
 //cutting_line.c
 char			*cutting_int_line(char *line, int **i_int, t_all *a);
 int				init_int_val(char *line_dup, int *idx);
@@ -112,7 +119,12 @@ int				compare_cmd_echo(t_all *b, int i);
 void			if_cmd_lower_echo(t_all *b, int i);
 int				check_serial_n_option(t_all *b, int i, int k);
 char			*change_arg(char *s2);
+//check_cmd_echo_2.c
+void			is_there_n_option(t_all *b, int i);
 //rearrange_args.c
 void			rearrange_arg(t_all *a);
 int				count_args(t_all *a);
+void			print_nyan(void);
+void			print_nyan_4(void);
+
 #endif

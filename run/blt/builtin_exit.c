@@ -8,8 +8,6 @@ void	builtin_exit(t_all *a)
 
 	if (!a)
 		return ;
-//	if (a->pipe_cnt == 0)
-//		reset_std_fd(new_fd);
 	exit_arg = 0;
 	reset_std_fd();
 	printf("exit\n");
