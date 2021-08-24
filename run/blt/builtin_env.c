@@ -14,4 +14,5 @@ void	builtin_env(t_all *a)
 		printf("%s=%s\n", tmp->name, tmp->value);
 		tmp = tmp->next;
 	}
+	g_env_list->exit_code = 0;
 }

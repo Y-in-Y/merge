@@ -11,4 +11,5 @@ void	builtin_pwd(t_all *a)
 	pwd = getcwd(NULL, 0);
 	printf("%s\n", pwd);
 	free(pwd);
+	g_env_list->exit_code = 0;
 }

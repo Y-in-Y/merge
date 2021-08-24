@@ -21,4 +21,5 @@ void	builtin_echo(t_all *a)
 	}
 	if (n_op == 0)
 		printf("\n");
+	g_env_list->exit_code = 0;
 }

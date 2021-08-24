@@ -57,12 +57,16 @@ void	minishell(void)
 		{
 			parsing(line, &a); // line parsing and add data to a struct
 			if (!a.int_line_cut)
+			{
+				printf("syntax error\n");
+				g_env_list->exit_code = 258;
 				free(line);
+			}
 			else
 			{
-				printf("int line cut pointer : %p\n", a.int_line_cut);
+//				printf("int line cut pointer : %p\n", a.int_line_cut);
 				make_tmp_file(a.pipe_cnt);
-				printf("end make tmp file\n");
+//				printf("end make tmp file\n");
 				if (check_heredoc(&a) == 0)
 					check = check_cmd(&a);
 				else // heredoc 중에 ctrl + C 로 끝낸경우 

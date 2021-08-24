@@ -7,6 +7,14 @@ void	run_export(char	*name, char *value)
 	t_env	*tmp;
 	int		check;
 
+	if (name[0] >= '0' && name[0] <= '9')
+	{
+		printf("env name cannot start num\n");
+		g_env_list->exit_code = 1;
+		return ;
+	}
+	if (!value)
+		return ;
 	tmp = g_env_list;
 	check = 0;
 	while (tmp && check == 0)
@@ -64,7 +72,10 @@ void	builtin_export(t_all *a)
 		name = NULL;
 		value = NULL;
 		if (!check)
-			error_msg("export arg missing");
+		{
+			printf("export arg missing\n");
+			g_env_list->exit_code = 1;
+		}
 		i = 0;
 		while (check[i])
 		{
@@ -77,8 +88,10 @@ void	builtin_export(t_all *a)
 			}
 			i++;
 		}
-		if (!name || !value)
-			error_msg("export arg missing");
+		if (!name)
+			name = ft_strdup(check);
 		run_export(name, value);
 	}
+	if (name && (name[0] < '0' || name[0] > '9'))
+		g_env_list->exit_code = 0;
 }

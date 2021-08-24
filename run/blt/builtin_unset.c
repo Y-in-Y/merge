@@ -13,6 +13,12 @@ void	builtin_unset(t_all *a)
 		return ;
 	name = a->arg[1];
 	tmp = g_env_list;
+	if (name[0] >= '0' && name[0] <= '9')
+	{
+		printf("env name cannot start num\n");
+		g_env_list->exit_code = 1;
+		return ;
+	}
 	check = ft_strncmp(tmp->name, name, ft_strlen(name));
 	if (check == 1)
 	{
@@ -36,4 +42,5 @@ void	builtin_unset(t_all *a)
 		free(unset);
 		env_list_to_arr();
 	}
+	g_env_list->exit_code = 0;
 }

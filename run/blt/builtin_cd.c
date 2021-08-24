@@ -37,4 +37,5 @@ void	builtin_cd(t_all *a)
 		pwd = getcwd(NULL, 0);
 		run_export("PWD", pwd);
 	}
+	g_env_list->exit_code = 0;
 }
