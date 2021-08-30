@@ -2,6 +2,24 @@
 
 extern t_env	*g_env_list;
 
+void	change_env_value(t_env *tmp, int check, char *name, char *value)
+{
+	if (check == 1)
+	{
+		free(tmp->value);
+		tmp->value = ft_strdup(value);
+	}
+	else if (!tmp->next && check == 0)
+	{
+		tmp->next = (t_env *)malloc(sizeof(t_env));
+		tmp = tmp->next;
+		tmp->name = name;
+		tmp->value = value;
+		tmp->origin = NULL;
+		tmp->next = NULL;
+	}
+}
+
 void	run_export(char	*name, char *value)
 {
 	t_env	*tmp;
@@ -26,20 +44,7 @@ void	run_export(char	*name, char *value)
 			break ;
 		tmp = tmp->next;
 	}
-	if (check == 1)
-	{
-		free(tmp->value);
-		tmp->value = ft_strdup(value);
-	}
-	else if (!tmp->next && check == 0)
-	{
-		tmp->next = (t_env *)malloc(sizeof(t_env));
-		tmp = tmp->next;
-		tmp->name = name;
-		tmp->value = value;
-		tmp->origin = NULL;
-		tmp->next = NULL;
-	}
+	change_env_value(tmp, check, name, value);
 	env_list_to_arr();
 }
 
@@ -52,6 +57,26 @@ void	print_only_export(void)
 	{
 		printf("declare -x %s=\"%s\"\n", env->name, env->value);
 		env = env->next;
+	}
+}
+
+void	check_to_name_value(char *check, char **name, char **value)
+{
+	int	i;
+
+	i = 0;
+	*name = NULL;
+	*value = NULL;
+	while (check[i])
+	{
+		if (check[i] == '=')
+		{
+			check[i] = '\0';
+			*name = ft_strdup(check);
+			*value = ft_strdup(&check[i + 1]);
+			break ;
+		}
+		i++;
 	}
 }
 
@@ -69,25 +94,12 @@ void	builtin_export(t_all *a)
 	else
 	{
 		check = a->arg[1];
-		name = NULL;
-		value = NULL;
 		if (!check)
 		{
 			printf("export arg missing\n");
 			g_env_list->exit_code = 1;
 		}
-		i = 0;
-		while (check[i])
-		{
-			if (check[i] == '=')
-			{
-				check[i] = '\0';
-				name = ft_strdup(check);
-				value = ft_strdup(&check[i + 1]);
-				break ;
-			}
-			i++;
-		}
+		check_to_name_value(check, &name, &value);
 		if (!name)
 			name = ft_strdup(check);
 		run_export(name, value);
