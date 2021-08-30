@@ -36,6 +36,16 @@ t_env	*init_envp(char **envp)
 	return (first);
 }
 
+void	main_parent_process(pid_t pid, int state, struct termios term)
+{
+	waitpid(pid, &state, 0);
+	tcsetattr(0, TCSANOW, &term);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (WIFEXITED(state))
+		exit(WEXITSTATUS(state));
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	int				state;
@@ -54,17 +64,8 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (pid > 0)
-	{
-		waitpid(pid, &state, 0);
-		if (WIFEXITED(state))
-			exit(WEXITSTATUS(state));
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-	}
+		main_parent_process(pid, state, term);
 	else if (pid == 0)
 		minishell();
-	tcsetattr(0, TCSANOW, &term);
-	if (WIFEXITED(state))
-		exit(WEXITSTATUS(state));
 	return (0);
 }
