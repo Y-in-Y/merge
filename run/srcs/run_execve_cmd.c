@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 18:17:46 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/24 18:17:48 by ylee             ###   ########.fr       */
+/*   Updated: 2021/09/02 02:04:17 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	**path_dir(void)
 {
 	char	*path;
 	char	**dir;
-	int		i;
 
 	path = find_env_value("PATH");
 	if (!path)

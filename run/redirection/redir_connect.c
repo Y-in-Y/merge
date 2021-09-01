@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 18:11:31 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/24 18:11:40 by ylee             ###   ########.fr       */
+/*   Updated: 2021/09/02 02:02:40 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	redir_out(t_list *tmp)
 
 void	heredoc(t_list *tmp)
 {
-	int		fd;
 	char	*tmpfile;
 
 	tmpfile = ft_strjoin("/tmp/.", ft_itoa(tmp->pipe_idx));

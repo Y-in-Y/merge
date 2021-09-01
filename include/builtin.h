@@ -19,6 +19,7 @@ void	builtin_echo(t_all *a);
 void	builtin_cd(t_all *a);
 void	builtin_pwd(t_all *a);
 void	builtin_export(t_all *a);
+void	run_export(char *name, char *value);
 void	builtin_unset(t_all *a);
 void	builtin_env(t_all *a);
 void	builtin_exit(t_all *a);

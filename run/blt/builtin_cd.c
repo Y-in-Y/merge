@@ -33,7 +33,6 @@ void	go_to_home(void)
 void	builtin_cd(t_all *a)
 {
 	char	*pwd;
-	t_env	*tmp;
 
 	if (!a)
 		return ;

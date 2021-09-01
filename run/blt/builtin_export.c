@@ -1,52 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_export.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/02 00:09:50 by ylee              #+#    #+#             */
+/*   Updated: 2021/09/02 02:00:17 by ylee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 extern t_env	*g_env_list;
-
-void	change_env_value(t_env *tmp, int check, char *name, char *value)
-{
-	if (check == 1)
-	{
-		free(tmp->value);
-		tmp->value = ft_strdup(value);
-	}
-	else if (!tmp->next && check == 0)
-	{
-		tmp->next = (t_env *)malloc(sizeof(t_env));
-		tmp = tmp->next;
-		tmp->name = name;
-		tmp->value = value;
-		tmp->origin = NULL;
-		tmp->next = NULL;
-	}
-}
-
-void	run_export(char	*name, char *value)
-{
-	t_env	*tmp;
-	int		check;
-
-	if (name[0] >= '0' && name[0] <= '9')
-	{
-		printf("env name cannot start num\n");
-		g_env_list->exit_code = 1;
-		return ;
-	}
-	if (!value)
-		return ;
-	tmp = g_env_list;
-	check = 0;
-	while (tmp && check == 0)
-	{
-		check = ft_strncmp(tmp->name, name, ft_strlen(name));
-		if (check == 1)
-			break ;
-		if (!tmp->next)
-			break ;
-		tmp = tmp->next;
-	}
-	change_env_value(tmp, check, name, value);
-	env_list_to_arr();
-}
 
 void	print_only_export(void)
 {
@@ -58,34 +24,62 @@ void	print_only_export(void)
 		printf("declare -x %s=\"%s\"\n", env->name, env->value);
 		env = env->next;
 	}
+	g_env_list->exit_code = 0;
 }
 
-void	check_to_name_value(char *check, char **name, char **value)
+void	arg_to_name_value(char *arg, char **name, char **value)
 {
 	int	i;
 
 	i = 0;
 	*name = NULL;
 	*value = NULL;
-	while (check[i])
+	while (arg[i])
 	{
-		if (check[i] == '=')
+		if (arg[i] == '=')
 		{
-			check[i] = '\0';
-			*name = ft_strdup(check);
-			*value = ft_strdup(&check[i + 1]);
+			arg[i] = '\0';
+			*name = ft_strdup(arg);
+			*value = ft_strdup(&arg[i + 1]);
+			arg[i] = '=';
 			break ;
 		}
 		i++;
 	}
+	if (!*name)
+		*name = ft_strdup(arg);
+}
+
+void	check_name(char **arg)
+{
+	int		i;
+	int		check;
+	char	*name;
+
+	i = 1;
+	check = 0;
+	name = *arg;
+	if (!ft_isalpha(name[0]) && name[0] != '_')
+		check = 1;
+	while (check == 0 && name[i])
+	{
+		if (!ft_isalpha(name[i]) && !ft_isdigit(name[i]) && name[i] != '_')
+			check = 1;
+		else
+			i++;
+	}
+	if (check == 0)
+		return ;
+	free(*arg);
+	*arg = NULL;
+	g_env_list->exit_code = 1;
 }
 
 void	builtin_export(t_all *a)
 {
-	char	*check;
+	char	*arg;
 	char	*name;
 	char	*value;
-	int		i;
 
 	if (!a)
 		return ;
@@ -93,17 +87,15 @@ void	builtin_export(t_all *a)
 		print_only_export();
 	else
 	{
-		check = a->arg[1];
-		if (!check)
-		{
-			printf("export arg missing\n");
-			g_env_list->exit_code = 1;
-		}
-		check_to_name_value(check, &name, &value);
+		arg = a->arg[1];
+		arg_to_name_value(arg, &name, &value);
+		check_name(&name);
 		if (!name)
-			name = ft_strdup(check);
+		{
+			printf("export: `%s\': not a valid identifier\n", a->arg[1]);
+			return ;
+		}
 		run_export(name, value);
-	}
-	if (name && (name[0] < '0' || name[0] > '9'))
 		g_env_list->exit_code = 0;
+	}
 }

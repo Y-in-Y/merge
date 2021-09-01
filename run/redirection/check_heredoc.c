@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 18:31:50 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/24 18:11:00 by ylee             ###   ########.fr       */
+/*   Updated: 2021/09/02 02:03:54 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	tmp_in_heredoc(int i, t_list *r_list)
 {
 	pid_t			pid;
 	int				status;
-	struct termios	term;
 
 	pid = fork();
 	if (pid > 0)

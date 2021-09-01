@@ -6,7 +6,7 @@
 /*   By: ylee <ylee@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 00:06:54 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/24 15:39:32 by ylee             ###   ########.fr       */
+/*   Updated: 2021/09/02 02:05:26 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 1 || !argv || !envp)
 		error_msg("no need arg!");
+	state = 0;
 	print_nyan();
 	g_env_list = init_envp(envp);
 	tcgetattr(0, &term);
