@@ -14,21 +14,8 @@
 
 extern t_env	*g_env_list;
 
-void	exec_heredoc(int i, t_list *r_list)
+void	run_heredoc(char *line, char *delimiter, int fd)
 {
-	int		fd;
-	char	*openfile;
-	char	*line;
-	char	*delimiter;
-
-	delimiter = ft_strjoin(r_list->file, "\n");
-	openfile = ft_strjoin("/tmp/.", ft_itoa(i));
-	fd = open(openfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (fd < 0)
-	{
-		printf("run_heredoc open error\n");
-		return ;
-	}
 	line = readline("> ");
 	while (line)
 	{
@@ -47,6 +34,25 @@ void	exec_heredoc(int i, t_list *r_list)
 	}
 	close(fd);
 	exit(3);
+}
+
+void	exec_heredoc(int i, t_list *r_list)
+{
+	int		fd;
+	char	*openfile;
+	char	*line;
+	char	*delimiter;
+
+	line = NULL;
+	delimiter = ft_strjoin(r_list->file, "\n");
+	openfile = ft_strjoin("/tmp/.", ft_itoa(i));
+	fd = open(openfile, O_RDWR | O_CREAT | O_TRUNC, 0666);
+	if (fd < 0)
+	{
+		printf("run_heredoc open error\n");
+		return ;
+	}
+	run_heredoc(line, delimiter, fd);
 }
 
 int	tmp_in_heredoc(int i, t_list *r_list)
@@ -78,13 +84,11 @@ int	tmp_in_heredoc(int i, t_list *r_list)
 	return (1);
 }
 
-int	check_heredoc(t_all *a)
+int	check_heredoc(t_all *a, int i)
 {
-	int		i;
 	t_all	*tmp;
 	t_list	*r_list;
 
-	i = 0;
 	tmp = a;
 	while (tmp)
 	{
@@ -94,7 +98,7 @@ int	check_heredoc(t_all *a)
 		{
 			if (r_list->redir_flag == 3)
 			{
-				if (tmp_in_heredoc(i, r_list) == 2) //ctrl + C 로 끝난 경우
+				if (tmp_in_heredoc(i, r_list) == 2)
 				{
 					printf("\n");
 					return (1);

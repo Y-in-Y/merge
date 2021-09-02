@@ -67,7 +67,7 @@ void	minishell(void)
 //				printf("int line cut pointer : %p\n", a.int_line_cut);
 				make_tmp_file(a.pipe_cnt);
 //				printf("end make tmp file\n");
-				if (check_heredoc(&a) == 0)
+				if (check_heredoc(&a, 0) == 0)
 					check = check_cmd(&a);
 				else // heredoc 중에 ctrl + C 로 끝낸경우 
 					check = -1;
