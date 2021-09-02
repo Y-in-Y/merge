@@ -38,23 +38,11 @@ void	move_to_prevline(int *row, int *col)
 	tputs(tgoto(cm, *col, *row), 1, putchar_tc);
 }
 
-void	move_cursor(int *row, int *col)
+void	check_row_col(int *row, int *col, char *buf)
 {
-	struct termios	term;
-	char			buf[255];
-	int				readlen;
-	int				i;
-	int				row_f;
+	int	i;
+	int	row_f;
 
-	tcgetattr(0, &term);
-	term.c_lflag &= ~ICANON;
-	term.c_lflag &= ~ECHO;
-	term.c_cc[VMIN] = 1;
-	term.c_cc[VTIME] = 0;
-	tcsetattr(0, TCSANOW, &term);
-	write(0, "\033[6n", 4);
-	readlen = read(0, buf, 254);
-	buf[readlen] = '\0';
 	i = 1;
 	row_f = 0;
 	while (buf[i])
@@ -74,5 +62,23 @@ void	move_cursor(int *row, int *col)
 		else if (buf[i] < 0 || buf[i] > '9')
 			i++;
 	}
+}
+
+void	move_cursor(int *row, int *col)
+{
+	struct termios	term;
+	char			buf[255];
+	int				readlen;
+
+	tcgetattr(0, &term);
+	term.c_lflag &= ~ICANON;
+	term.c_lflag &= ~ECHO;
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+	tcsetattr(0, TCSANOW, &term);
+	write(0, "\033[6n", 4);
+	readlen = read(0, buf, 254);
+	buf[readlen] = '\0';
+	check_row_col(row, col, &(buf[0]));
 	move_to_prevline(row, col);
 }
