@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+int	check_export_unset(int cnt)
+{
+	if (cnt == 0)
+		return (1);
+	else
+	{
+		printf("command not found\n");
+		return (-1);
+	}
+	return (0);
+}
+
 int	is_cmd_blt(char *cmd, int cnt)
 {
 	int	ret;
@@ -24,25 +36,9 @@ int	is_cmd_blt(char *cmd, int cnt)
 	else if (ft_strncmp(cmd, "pwd", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "export", 7) == 1)
-	{
-		if (cnt == 0)
-			ret = 1;
-		else
-		{
-			printf("command not found\n");
-			ret = -1;
-		}
-	}
+		return (check_export_unset(cnt));
 	else if (ft_strncmp(cmd, "unset", 6) == 1)
-	{
-		if (cnt == 0)
-			ret = 1;
-		else
-		{
-			printf("command not found\n");
-			ret = -1;
-		}
-	}
+		return (check_export_unset(cnt));
 	else if (ft_strncmp(cmd, "env", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "exit", 5) == 1)
@@ -66,16 +62,15 @@ int	check_cmd(t_all *a)
 	for_check = ft_strdup(a->cmd);
 	if (!for_check)
 		return (-1);
-	i = 0;
+	i = -1;
 	cnt = 0;
-	while (for_check[i])
+	while (for_check[++i])
 	{
 		if (for_check[i] >= 'A' && for_check[i] <= 'Z')
 		{
 			for_check[i] = for_check[i] + 32;
 			cnt++;
 		}
-		i++;
 	}
 	ret = is_cmd_blt(for_check, cnt);
 	free(for_check);

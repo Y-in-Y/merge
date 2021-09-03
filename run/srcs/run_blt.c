@@ -54,5 +54,4 @@ void	run_blt(t_all *a)
 	a->cmd = new_cmd;
 	run_blt_cmd(a);
 	reset_std_fd();
-//	error case 추가해야함
 }
