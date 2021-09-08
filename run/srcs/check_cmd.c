@@ -12,19 +12,22 @@
 
 #include "minishell.h"
 
-int	check_export_unset(int cnt)
+extern t_env	*g_env_list;
+
+int	check_export_unset(char *cmd, int cnt)
 {
 	if (cnt == 0)
 		return (1);
 	else
 	{
-		printf("command not found\n");
+		printf("%s: command not found\n", cmd);
+		g_env_list->exit_code = 127;
 		return (-1);
 	}
 	return (0);
 }
 
-int	is_cmd_blt(char *cmd, int cnt)
+int	is_cmd_blt(char *str, char *cmd, int cnt)
 {
 	int	ret;
 
@@ -36,9 +39,9 @@ int	is_cmd_blt(char *cmd, int cnt)
 	else if (ft_strncmp(cmd, "pwd", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "export", 7) == 1)
-		return (check_export_unset(cnt));
+		return (check_export_unset(str, cnt));
 	else if (ft_strncmp(cmd, "unset", 6) == 1)
-		return (check_export_unset(cnt));
+		return (check_export_unset(str, cnt));
 	else if (ft_strncmp(cmd, "env", 4) == 1)
 		ret = 1;
 	else if (ft_strncmp(cmd, "exit", 5) == 1)
@@ -72,7 +75,7 @@ int	check_cmd(t_all *a)
 			cnt++;
 		}
 	}
-	ret = is_cmd_blt(for_check, cnt);
+	ret = is_cmd_blt(a->cmd, for_check, cnt);
 	free(for_check);
 	return (ret);
 }

@@ -38,12 +38,15 @@ PARSING_O		=	$(addsuffix .o, $(addprefix $(PARSING_D), $(PARSING_F)))
 
 RUN_D			=	./run/run_shell/
 RUN_F			=	child_process\
+					free_structure\
+					init_setting\
 					manage_tmp_file\
 					move_cursor\
 					minishell\
 					multipipe\
 					print_nyan\
 					print_nyan_2\
+					sig_handler_c\
 
 RUN_C			=	$(addsuffix .c, $(addprefix $(RUN_D), $(RUN_F)))
 RUN_O			=	$(addsuffix .o, $(addprefix $(RUN_D), $(RUN_F)))
@@ -86,8 +89,7 @@ REDIR_C			=	$(addsuffix .c, $(addprefix $(REDIR_D), $(REDIR_F)))
 REDIR_O			=	$(addsuffix .o, $(addprefix $(REDIR_D), $(REDIR_F)))
 
 ELSE_D			=	./run/srcs/
-ELSE_F			=	check_blt_func\
-					check_cmd\
+ELSE_F			=	check_cmd\
 					check_delimiter\
 					error_msg\
 					run_blt\
@@ -102,11 +104,11 @@ OBJS			=	$(PARSING_O) $(RUN_O) $(FT_O) $(BLT_O) $(REDIR_O) $(ELSE_O)
 all: $(NAME)
 
 $(NAME): notice $(OBJS)
-	@$(CC) $(CFLAGS_42) $(H_FLAG) main.c $(OBJS) -o $(NAME) $(RL_FLAG) $(TC_FLAG)
+	$(CC) $(CFLAGS_42) $(H_FLAG) main.c $(OBJS) -o $(NAME) $(RL_FLAG) $(TC_FLAG)
 	@echo compile complete
 
 .c.o:
-	@$(CC) $(CFLAGS_42) $(H_FLAG) -c -o $@ $<
+	$(CC) $(CFLAGS_42) $(H_FLAG) -c -o $@ $<
 
 notice:
 	@echo now compile... wait please

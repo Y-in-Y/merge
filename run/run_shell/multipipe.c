@@ -38,7 +38,7 @@ void	multipipe(t_all *a)
 	if (pid[i] < 0)
 		error_msg("fork error");
 	if (i == 0 && pid[i] == 0)
-		child_process(a, i, fd); //first cmd
+		child_process(a, i, fd);
 	else
 	{
 		i = 1;
@@ -56,7 +56,7 @@ void	multipipe(t_all *a)
 			i++;
 		}
 		if (i < cmd_cnt - 1 && pid[i] == 0)
-			child_process(a, i, fd); // 2 ~ (last - 1) cmd
+			child_process(a, i, fd);
 		else
 		{
 			if (i != cmd_cnt - 1)
@@ -65,7 +65,7 @@ void	multipipe(t_all *a)
 			if (pid[i] < 0)
 				error_msg("fork error");
 			if (pid[i] == 0)
-				child_process(a, i, fd); // last cmd
+				child_process(a, i, fd);
 			else
 			{
 				close(fd[i - 1][0]);
@@ -87,4 +87,11 @@ void	multipipe(t_all *a)
 	}
 	free(fd);
 	free(pid);
+	if (WIFEXITED(state))
+		g_env_list->exit_code = WEXITSTATUS(state);
+	else if (WIFSIGNALED(state))
+		g_env_list->exit_code = WTERMSIG(state) + 128;
+	else
+		g_env_list->exit_code = 0;
+	exit(g_env_list->exit_code);
 }

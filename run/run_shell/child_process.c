@@ -31,9 +31,11 @@ void	child_process(t_all *a, int i, int **fd)
 	if (tmp && tmp->redir_flag != 0)
 		rearrange_arg(thispage);
 	only_pipe(a, i, fd);
-	check = check_blt_func(thispage->cmd);
+	check = check_cmd(thispage);
 	if (check == 1)
 		run_blt(thispage);
 	else if (check == 0)
 		run_execve_cmd(thispage);
+	else if (check == -1)
+		exit (127);
 }

@@ -4,18 +4,16 @@
 # include "minishell.h"
 
 void	sig_handler_c(int signo);
-void	child_sig_handler_c(int signo);
-void	child_sig_handler_q3(int signo);
+void	init_setting(int *row, int *col);
 void	minishell(void);
 void	error_msg(char *str);
-void	print_ascii_art(void);
 int		check_exit(char *line);
 int		check_cmd(t_all *a);
 char	*check_cmd_upper(char *cmd, int *cnt);
 void	move_cursor(int *row, int *col);
 void	run_execve_cmd(t_all *a);
 void	redir_connect(t_list *list);
-void	rearrange_arg(t_all *a);
+void	free_struct(t_all *a);
 
 int		ft_atoi(char *str);
 int		ft_strlen(char *str);
