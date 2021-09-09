@@ -101,14 +101,14 @@ ELSE_O			=	$(addsuffix .o, $(addprefix $(ELSE_D), $(ELSE_F)))
 
 OBJS			=	$(PARSING_O) $(RUN_O) $(FT_O) $(BLT_O) $(REDIR_O) $(ELSE_O)
 
-all: $(NAME)
-
-$(NAME): notice $(OBJS)
-	$(CC) $(CFLAGS_42) $(H_FLAG) main.c $(OBJS) -o $(NAME) $(RL_FLAG) $(TC_FLAG)
+all: notice $(NAME)
 	@echo compile complete
 
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS_42) $(H_FLAG) main.c $(OBJS) -o $(NAME) $(RL_FLAG) $(TC_FLAG)
+
 .c.o:
-	$(CC) $(CFLAGS_42) $(H_FLAG) -c -o $@ $<
+	@$(CC) $(CFLAGS_42) $(H_FLAG) -c -o $@ $<
 
 notice:
 	@echo now compile... wait please
