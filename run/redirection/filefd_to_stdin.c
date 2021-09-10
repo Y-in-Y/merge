@@ -16,7 +16,7 @@ void	filefd_to_stdin(char *file)
 {
 	int		fd;
 
-	fd = open(file, O_RDWR | O_CREAT, 0666);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_msg("file open error");
 	dup2(fd, STDIN_FD);
